@@ -1,0 +1,79 @@
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">MongoScraper</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="active">
+                    <a href="/saved">Saved Articles</a>
+                </li>
+            </ul> 
+            <a href="/scrape">
+                <button type="button" id="getNewArticles" class="btn btn-primary navbar-btn">Get New Articles</button>
+            </a>
+            </div>
+        </div>
+    </nav>
+    <div class="topTitle">
+        <div class="imageAdjustment">
+            <h1>MongoScraper</h1>
+            <p>NYT - Technology</p>
+        </div>
+    </div>
+
+<div class="bodyContent">
+        {{#each dbArticles}}
+        {{#if saved}}
+        <form class="inline-block" method="post" action="/saved">
+            <div class="panel panel-default">
+                <div class="panel-heading title"> {{title}}
+                    <div class="clearfix deleteArticleBtn">
+                        <button type="submit" name="articleID" value="{{_id}}" class="btn btn-danger">Delete Article</button>
+                    </div>
+                    <div class="clearfix articleNotesBtn">
+                        <button type="button" class="btn btn-warning triggerModal" value="{{_id}}">Article Notes</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p class="summary">{{summary}}</p>
+                </div>
+            </div>
+        </form>
+        {{/if}}
+        {{/each}}
+    </div>
+
+
+    <div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  	<div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+		      	<div class="modal-header">
+		        	<h5 class="modal-title">Notes for: </h5>
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          	<span aria-hidden="true">&times;</span>
+		        	</button>
+                    <div id="commentDiv"><p id="insertComment"></p><button>Clear Comment</button></div>
+		      	</div>
+		      	<div class="modal-body">
+		        {{!-- <input class="form-control form-control-sm mr-sm-2" id="modalTaskInput" type="text" placeholder="Add New Task" aria-label="Add to Quick-Add"> --}}
+					<form class="form-horizontal" id="modalForm" role="form" method="post" action="/saved">
+					<div class="form-group">
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="newNoteModal" placeholder="Add a note" name="newNote"/>
+							<br>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							<button id="addNote" class="btn btn-primary" type="submit">Add</button>
+						</div>
+					</div>
+					</form>
+		      	</div>
+		      	<div class="modal-footer">
+
+		      	</div>
+	  	  	</div>
+	  	</div>
+	</div>

@@ -1,0 +1,80 @@
+/* .navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #000;
+    background: blue;
+} */
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.topTitle {
+    /* position: relative; */
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+#getNewArticles {
+    margin-left: 20px;
+}
+
+.clearfix::after {
+	content: “”;
+	display: block;
+	clear: both;
+}
+
+.imageAdjustment {
+    /* position: absolute; */
+    background-image: url("../images/newspapers.jpeg");
+    background-size: cover;
+    height: 300px;
+    width: 100%;
+}
+
+.imageAdjustment h1 {
+    padding-top: 70px;
+    font-size: 62px;
+    color: #fefefe;
+}
+
+.imageAdjustment p {
+    font-size: 24px;
+    color: white;
+}
+
+.panel-default>.panel-heading {
+    background-color: rgb(0, 208, 255);
+}
+
+.title {
+    background-color: rgb(0, 208, 255);
+    font-size: 32px;
+}
+
+.saveArticleBtn {
+    float: right;
+    margin-top: 8px;
+}
+
+.summary {
+    padding: 0px;
+    margin: 0px;
+}
+
+.articleNotesBtn {
+    float: right;
+    margin-right: 12px;
+}
+
+.deleteArticleBtn {
+    float: right;
+}
+
+#insertComment {
+    height: 100px;
+    font-size: 24px;
+    color: red;
+    margin: 20px 0px;
+}
