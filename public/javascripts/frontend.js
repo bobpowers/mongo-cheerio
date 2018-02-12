@@ -1,9 +1,6 @@
 
 $(document).ready(function(){
-// HOME PAGE JAVASCRIPT
-    
-
-// SAVED ARTICLES JAVASCRIPT
+// SAVED ARTICLES PAGE JAVASCRIPT
     $(".triggerModal").on("click", function(){
         var articleID = $(this).val();
         noteModal(articleID);
@@ -11,8 +8,6 @@ $(document).ready(function(){
     })
     $("")
 });
-
-
 
 
 // SAVED ARTICLES MODAL

@@ -13,7 +13,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 
-/* GET for Home Page*/
+/* GET for Home Page- Returns Articles*/
 router.get('/', function(req, res, next) {
     db.Article.find({}).limit(20).sort({date: -1})
     .then(function(dbArticles) {
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
       res.json(err);
     });
 });
-// POST for Home Page
+// POST for Home Page- Sends selected article to Saved page
 router.post('/', function(req ,res){
   db.Article.update({_id: req.body.articleID},{saved: true})
   .then(function(){
@@ -31,7 +31,7 @@ router.post('/', function(req ,res){
   })
 });
 
-
+// GET for Saved- Returns Saved Articles
 router.get("/saved", function(req, res){
   db.Article.find({})
   .then(function(dbArticles){
@@ -42,6 +42,7 @@ router.get("/saved", function(req, res){
   })
 });
 
+// POST for Saved- Deletes article
 router.post("/saved", function(req, res){
   db.Article.remove({_id: req.body.articleID})
   .then(function(){
@@ -79,7 +80,9 @@ router.get("/scrape", function(req, res) {
 	});
 })
 
-// ROUTE TO VISIT ARTICLE
+/* 
+GET will return note associated with article
+POST will add note to article */
 router.route("/saved/:id")
 .get(function(req, res){
     db.Article.findOne({ _id: req.params.id })
@@ -92,7 +95,6 @@ router.route("/saved/:id")
     });
 })
 .post(function(req, res){
-    // console.log(req.params)
     var addComment = {
         comment: req.body.newNote
     };
@@ -101,7 +103,6 @@ router.route("/saved/:id")
       return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
     })
     .then(function(dbArticle) {
-      // res.json(dbArticle);
       res.redirect('/saved');
     })
     .catch(function(err) {
@@ -109,8 +110,8 @@ router.route("/saved/:id")
     });
 });
 
+// POST for deleting note associated with article
 router.post('/note/:id', function(req ,res){
-
   db.Notes.remove({_id: req.body.noteDeleteID})
   .then(function(){
     console.log("Note Deleted")
