@@ -1,18 +1,9 @@
-console.log("Front End JS Connected");
+
+$(document).ready(function(){
 // HOME PAGE JAVASCRIPT
-
-
-
-
-
-
-
-
+    
 
 // SAVED ARTICLES JAVASCRIPT
-$(document).ready(function(){
-
-
     $(".triggerModal").on("click", function(){
         var articleID = $(this).val();
         noteModal(articleID);
@@ -21,6 +12,10 @@ $(document).ready(function(){
     $("")
 });
 
+
+
+
+// SAVED ARTICLES MODAL
 var noteModal = function(articleID){
     $.ajax({
         method: "GET",
