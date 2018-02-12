@@ -15,7 +15,7 @@ mongoose.connect(MONGODB_URI, {
 
 /* GET for Home Page*/
 router.get('/', function(req, res, next) {
-    db.Article.find({}).limit(20).sort({date: 1})
+    db.Article.find({}).limit(20).sort({date: -1})
     .then(function(dbArticles) {
       res.render('index', {dbArticles});
     })
@@ -108,6 +108,21 @@ router.route("/saved/:id")
       res.json(err);
     });
 });
+
+router.post('/note/:id', function(req ,res){
+
+  db.Notes.remove({_id: req.body.noteDeleteID})
+  .then(function(){
+    console.log("Note Deleted")
+  })
+  .then(function(){
+    res.redirect('/saved');
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
+});
+
 
 module.exports = router;
   
